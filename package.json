@@ -1,0 +1,104 @@
+{
+  "name": "clipboard-manager-electron",
+  "version": "3.4.0",
+  "description": "A clipboard manager built with Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "standard --fix",
+    "build": "electron-builder -p never --config ./electron-builder.yml",
+    "postinstall": "modclean -r",
+    "dist": "electron-builder"
+  },
+  "author": "Fernando M. Tenório <dotenorio@gmail.com> (https://blog.dotenorio.com)",
+  "license": "MIT",
+  "dependencies": {
+    "auto-launch": "^5.0.5",
+    "electron-reload": "^1.5.0",
+    "lodash": "^4.17.15",
+    "lowdb": "^1.0.0",
+    "node-notifier": "^6.0.0"
+  },
+  "devDependencies": {
+    "electron": "^8.2.0",
+    "electron-builder": "^22.4.1",
+    "modclean": "^3.0.0-beta.1",
+    "standard": "^14.3.3"
+  },
+  "build": {
+    "appId": "com.dotrnorio.clipboardManager",
+    "productName": "Electron-Clipboard-Manager",
+    "copyright": "dotenorio",
+    "linux": {
+      "category": "Utility",
+      "icon": "icons/icon.png",
+      "target": [
+        {
+          "target": "deb",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "mac": {
+      "icon": "icons/icon.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "asar": false,
+      "icon": "icons/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotenorio/clipboard-manager-electron.git"
+  },
+  "keywords": [
+    "electron-app",
+    "javascript",
+    "clipboard",
+    "clipboard-manager",
+    "electron"
+  ],
+  "bugs": {
+    "url": "https://github.com/dotenorio/clipboard-manager-electron/issues"
+  },
+  "homepage": "https://github.com/dotenorio/clipboard-manager-electron#readme",
+  "standard": {
+    "globals": [
+      "title",
+      "win"
+    ]
+  }
+}

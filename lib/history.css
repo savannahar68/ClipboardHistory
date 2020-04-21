@@ -1,0 +1,5 @@
+.display_box_hover,
+.display_box:hover {
+  background: #3b5998;
+  color: #ffffff;
+}
