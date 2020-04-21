@@ -1,7 +1,8 @@
-[![Build Status](https://travis-ci.org/dotenorio/clipboard-manager-electron.svg?branch=master)](https://travis-ci.org/dotenorio/clipboard-manager-electron)
+# Clipboard History
 
-# Clipboard Manager Electron
-A clipboard manager built with Electron
+
+A clipboard manager built with Electron which will replicate Windows 10 clipboard history (Win + C) for linux and MAC
+The initial code is forked from [Clipboard-Manager-Electron](https://github.com/dotenorio/clipboard-manager-electron), which has many bugs(somehow not working properly for me), and doesn't support feature like having entire clipboard history on global shortcut just like Window's Clipboard history. 
 
 _Preview Windows_
 
