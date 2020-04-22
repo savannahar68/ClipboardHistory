@@ -1,5 +1,9 @@
-.display_box_hover,
-.display_box:hover {
-  background: #3b5998;
-  color: #ffffff;
+body {
+  font-family: 'Arial'; }
+table {
+  td {
+    padding: 10px;
+    background: pink;
+    width: 100px;
+}
 }
