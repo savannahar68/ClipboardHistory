@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/savannahar68/ClipboardHistory#readme",
   "dependencies": {
+    "bootstrap": "^4.4.1",
     "electron": "^8.2.5"
   }
 }
