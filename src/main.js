@@ -6,6 +6,7 @@ const clipboard = electron.clipboard
 const globalShortcut = electron.globalShortcut
 const Menu = electron.Menu
 const Tray = electron.Tray
+const  BrowserWindow = electron.BrowserWindow;
 
 const ITEM_MAX_LENGTH = 20
 const STACK_SIZE = 5
@@ -54,14 +55,33 @@ app.on('ready', _ => {
     console.log("Ready")
     let stack = []
     const tray = new Tray(path.join('src', 'trayIcon.png'))
+    //TOOD : Add a Quit button to tray
+    //TODO : Add a limit option to tray 
     tray.setContextMenu(Menu.buildFromTemplate([{ label: '<Empty>', enabled: false }]))
+
+    globalShortcut.unregisterAll();
+    globalShortcut.register('CmdOrCtrl+L', () => {
+        let win = new BrowserWindow({ width: 400, height: 600 })
+        win.on('closed', e => {
+            win = null
+        })
+
+        win.on('window-all-closed', e => e.preventDefault() )
+        // Load a remote URL
+        win.loadURL('https://github.com')
+
+        // Or load a local HTML file
+        //win.loadURL(`file://${__dirname}/app/index.html`)
+    })
 
     checkClipboardForChange(clipboard, text => {
         stack = addToStack(text, stack)
         tray.setContextMenu(Menu.buildFromTemplate(formatMenuTemplateForStack(clipboard, stack)))
-        registerShortcuts(globalShortcut, clipboard, stack)
+        //registerShortcuts(globalShortcut, clipboard, stack)
     })
 })
+
+app.on('window-all-closed', e => e.preventDefault());
 
 app.on('will-quit', _ => {
     globalShortcut.unregisterAll()
