@@ -67,11 +67,8 @@ app.on('ready', _ => {
         })
 
         win.on('window-all-closed', e => e.preventDefault() )
-        // Load a remote URL
-        win.loadURL('https://github.com')
 
-        // Or load a local HTML file
-        //win.loadURL(`file://${__dirname}/app/index.html`)
+        win.loadURL(`file://${__dirname}/index.html`)
     })
 
     checkClipboardForChange(clipboard, text => {
