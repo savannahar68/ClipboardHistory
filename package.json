@@ -1,29 +1,44 @@
 {
-  "name": "clipboardhistory",
-  "version": "0.0.1",
-  "description": "Replicating window's clipboard history in Electron for all 3 OS",
+  "name": "clipboardreact",
+  "version": "0.1.0",
+  "private": true,
   "main": "src/main.js",
-  "scripts": {
-    "test": "electron .",
-    "start": "electron ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/savannahar68/ClipboardHistory.git"
-  },
-  "keywords": [
-    "electron",
-    "npm",
-    "clipboard manager"
-  ],
-  "author": "Savan Nahar",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/savannahar68/ClipboardHistory/issues"
-  },
-  "homepage": "https://github.com/savannahar68/ClipboardHistory#readme",
   "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.4.1",
+    "concurrently": "^5.2.0",
+    "electron-builder": "^22.6.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "wait-on": "^5.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-dev": "concurrently \"BROWSER=none npm run start\" \"wait-on http://localhost:3000 && electron .\""
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
     "electron": "^8.2.5"
   }
 }

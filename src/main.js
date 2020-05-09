@@ -73,7 +73,8 @@ app.on("ready", (_) => {
 
     win.on("window-all-closed", (e) => e.preventDefault());
 
-    win.loadURL(`file://${__dirname}/index.html`);
+    //win.loadURL(`file://${__dirname}/index.html`);
+    win.loadURL("http://localhost:3000/");
   });
 
   checkClipboardForChange(clipboard, (text) => {
