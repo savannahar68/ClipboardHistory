@@ -66,7 +66,7 @@ app.on("ready", (_) => {
   globalShortcut.register("CmdOrCtrl+L", () => {
     let win = new BrowserWindow({ width: 400, height: 600 });
     win.removeMenu();
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
     win.on("closed", (e) => {
       win = null;
     });
