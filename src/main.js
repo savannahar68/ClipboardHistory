@@ -28,11 +28,18 @@ function formatItem(item) {
 }
 
 function formatMenuTemplateForStack(clipboard, stack) {
-  return stack.map((item, i) => ({
+  let contextMenu = stack.map((item, i) => ({
     label: `Copy: ${formatItem(item)}`,
     click: (_) => clipboard.writeText(item),
     accelerator: `CmdOrCtrl+Alt+${i + 1}`,
   }));
+  contextMenu.push({
+    label: "Quit",
+    click: () => {
+      app.quit();
+    },
+  });
+  return contextMenu;
 }
 
 function checkClipboardForChange(clipboard, onChange) {
@@ -65,10 +72,17 @@ app.on("ready", (_) => {
   let stack = [];
   var tray = new Tray(path.join("src", "trayIcon.png"));
   tray.setToolTip("Clipboard History");
-  //TOOD : Add a Quit button to tray
   //TODO : Add a limit option to tray
   tray.setContextMenu(
-    Menu.buildFromTemplate([{ label: "<Empty>", enabled: false }])
+    Menu.buildFromTemplate([
+      { label: "<Empty>", enabled: false },
+      {
+        label: "Quit",
+        click: () => {
+          app.quit();
+        },
+      },
+    ])
   );
 
   globalShortcut.unregisterAll();
