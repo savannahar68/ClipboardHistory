@@ -1,5 +1,5 @@
 {
-  "name": "clipboardreact",
+  "name": "clipboardhistory",
   "version": "0.1.0",
   "description": "Recreating Window's 10 clipboard history in electron for all OS(Win, Mac, Linux)",
   "author": "Savan Naha <savannahar68@gmail.com>",
@@ -11,7 +11,8 @@
     "bootstrap": "^4.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "electron-is-dev": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,7 +20,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "electron-dev": "concurrently \"BROWSER=none npm run start\" \"wait-on http://localhost:3000 && electron .\""
+    "electron-dev": "concurrently \"BROWSER=none npm run start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build-electron": "mkdir build/electron && cp src/main.js build/electron/. && cp src/tray.png build/electron/. && cp src/256x256.png build/electron/.",
+    "build-electron-win": "mkdir build/electron && robocopy src/main.js build/electron",
+    "package": "electron-builder build --x64 --linux -c.extraMetadata.main=build/electron/main.js --publish never",
+    "pack": "electron-builder --dir",
+    "dist": "npx build --x64 --linux --c.extraMetadata.main=build/electron/main.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,11 +43,10 @@
     ]
   },
   "devDependencies": {
-    "electron": "^8.2.5",
     "concurrently": "^5.2.0",
-    "electron-is-dev": "^1.2.0",
     "electron-builder": "^22.6.0",
-    "wait-on": "^5.0.0"
+    "wait-on": "^5.0.0",
+    "electron": "^8.2.5"
   },
   "repository": {
     "type": "git",
@@ -63,20 +68,12 @@
     "copyright": "savannahar68",
     "linux": {
       "category": "Utility",
-      "icon": "icons/png/64x64.png",
+      "icon": "icons/png/256x256.png",
       "target": [
         {
           "target": "deb",
           "arch": [
-            "x64",
-            "ia32"
-          ]
-        },
-        {
-          "target": "rpm",
-          "arch": [
-            "x64",
-            "ia32"
+            "x64"
           ]
         }
       ]
@@ -94,20 +91,23 @@
         {
           "target": "nsis",
           "arch": [
-            "x64",
-            "ia32"
+            "x64"
           ]
         },
         {
           "target": "portable",
           "arch": [
-            "x64",
-            "ia32"
+            "x64"
           ]
         }
       ]
     },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
     "directories": {
+      "buildResources": "build",
       "output": "dist"
     }
   }

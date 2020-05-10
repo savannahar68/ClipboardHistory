@@ -70,7 +70,7 @@ var win = null;
 app.on("ready", (_) => {
   console.log("Ready");
   let stack = [];
-  var tray = new Tray(path.join("src", "tray.png"));
+  var tray = new Tray(path.join(__dirname, "tray.png"));
   tray.setToolTip("Clipboard History");
   //TODO : Add a limit option to tray
   tray.setContextMenu(
@@ -101,11 +101,10 @@ app.on("ready", (_) => {
     });
 
     win.on("window-all-closed", (e) => e.preventDefault());
-
     if (isDev) {
       win.loadURL("http://localhost:3000");
     } else {
-      win.loadFile("build/index.html");
+      win.loadFile(`file://${path.join(__dirname, "../build/index.html")}`);
     }
 
     // if (isDev) {
