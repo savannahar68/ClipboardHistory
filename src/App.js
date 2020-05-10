@@ -68,15 +68,11 @@ const App = () => {
   const [hovered, setHovered] = useState(undefined);
 
   useEffect(() => {
-    console.log("Inside useEffect");
-
     ipcRenderer.on("clipboardContents", (event, message) => {
-      console.log("clip : ", message);
       items = [];
       message.forEach((element, index) => {
         items.push({ id: index + 10, name: element });
       });
-      console.log(items);
       setSelected(items[0]);
       document.getElementById("clipHistory").focus();
     });

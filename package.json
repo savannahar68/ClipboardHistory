@@ -1,20 +1,14 @@
 {
   "name": "clipboardreact",
   "version": "0.1.0",
-  "private": true,
+  "author": "Savan Naha <savannahar68@gmail.com>",
+  "license": "MIT",
   "main": "src/main.js",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.4.1",
-    "concurrently": "^5.2.0",
-    "electron-builder": "^22.6.0",
-    "electron-is-dev": "^1.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "wait-on": "^5.0.0"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,6 +34,25 @@
     ]
   },
   "devDependencies": {
-    "electron": "^8.2.5"
-  }
+    "electron": "^8.2.5",
+    "concurrently": "^5.2.0",
+    "electron-is-dev": "^1.2.0",
+    "electron-builder": "^22.6.0",
+    "wait-on": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savannahar68/ClipboardHistory.git"
+  },
+  "keywords": [
+    "electron-app",
+    "javascript",
+    "clipboard",
+    "clipboard-manager",
+    "electron"
+  ],
+  "bugs": {
+    "url": "https://github.com/savannahar68/ClipboardHistory/issues"
+  },
+  "homepage": "https://github.com/savannahar68/ClipboardHistory"
 }
