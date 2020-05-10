@@ -21,11 +21,11 @@
     "eject": "react-scripts eject",
     "electron": "electron .",
     "electron-dev": "concurrently \"BROWSER=none npm run start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build-electron": "mkdir build/electron && cp src/main.js build/electron/. && cp src/tray.png build/electron/. && cp src/256x256.png build/electron/.",
+    "build-electron": "mkdir build/electron && cp src/main.js build/electron/. && cp src/tray.png build/electron/.",
     "build-electron-win": "mkdir build/electron && robocopy src/main.js build/electron",
     "package": "electron-builder build --x64 --linux -c.extraMetadata.main=build/electron/main.js --publish never",
     "pack": "electron-builder --dir",
-    "dist": "npx build --x64 --linux --c.extraMetadata.main=build/electron/main.js"
+    "dist": "npx electron-builder --x64 --linux --c.extraMetadata.main=build/electron/main.js"
   },
   "eslintConfig": {
     "extends": "react-app"
