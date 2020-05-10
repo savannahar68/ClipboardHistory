@@ -1,5 +1,7 @@
 const electron = require("electron");
 const path = require("path");
+const ipcMain = require("electron").ipcMain;
+const isDev = require("electron-is-dev");
 
 const app = electron.app;
 const clipboard = electron.clipboard;
@@ -8,8 +10,8 @@ const Menu = electron.Menu;
 const Tray = electron.Tray;
 const BrowserWindow = electron.BrowserWindow;
 
-const ITEM_MAX_LENGTH = 20;
-const STACK_SIZE = 5;
+const ITEM_MAX_LENGTH = 1000;
+const STACK_SIZE = 20;
 
 function addToStack(item, stack = []) {
   return [item].concat(
@@ -64,17 +66,35 @@ app.on("ready", (_) => {
 
   globalShortcut.unregisterAll();
   globalShortcut.register("CmdOrCtrl+L", () => {
-    let win = new BrowserWindow({ width: 400, height: 600 });
+    let win = new BrowserWindow({
+      width: 400,
+      height: 600,
+      webPreferences: {
+        nodeIntegration: true,
+      },
+    });
+
     win.removeMenu();
-    // win.webContents.openDevTools();
     win.on("closed", (e) => {
       win = null;
     });
 
     win.on("window-all-closed", (e) => e.preventDefault());
 
-    //win.loadURL(`file://${__dirname}/index.html`);
-    win.loadURL("http://localhost:3000/");
+    if (isDev) {
+      win.loadURL("http://localhost:3000");
+    } else {
+      win.loadFile("build/index.html");
+    }
+
+    if (isDev) {
+      win.webContents.openDevTools();
+    }
+
+    let contents = win.webContents;
+    win.webContents.on("did-finish-load", () => {
+      win.webContents.send("clipboardContents", stack);
+    });
   });
 
   checkClipboardForChange(clipboard, (text) => {

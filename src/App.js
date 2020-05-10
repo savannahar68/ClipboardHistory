@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
+const ipcRenderer = window.require("electron").ipcRenderer;
 const useKeyPress = function (targetKey) {
   const [keyPressed, setKeyPressed] = useState(false);
 
@@ -30,31 +31,21 @@ const useKeyPress = function (targetKey) {
   return keyPressed;
 };
 
-const items = [
-  { id: 0, name: "Savan Nahar" },
-  { id: 1, name: "Josh Weir" },
-  { id: 2, name: "Sarah Weir" },
-  { id: 3, name: "Alicia Weir" },
-  { id: 4, name: "Doo Weir" },
-  { id: 5, name: "Grooft Weir" },
-  { id: 6, name: "Josh Weir" },
-  { id: 7, name: "Sarah Weir" },
-  { id: 8, name: "Alicia Weir" },
-  { id: 9, name: "Doo Weir" },
-  { id: 10, name: "Grooft Weir" },
-];
+var items = [];
 
-const ListItem = ({ id, item, active, setSelected, setHovered }) => (
-  <div
-    id={`clip_${id}`}
-    className={`item ${active ? "active" : ""}`}
-    onClick={() => setSelected(item)}
-    onMouseEnter={() => setHovered(item)}
-    onMouseLeave={() => setHovered(undefined)}
-  >
-    {item.name}
-  </div>
-);
+const ListItem = ({ id, item, active, setSelected, setHovered }) => {
+  return (
+    <div
+      id={`clip_${id}`}
+      className={`item ${active ? "active" : ""}`}
+      onClick={() => setSelected(item)}
+      onMouseEnter={() => setHovered(item)}
+      onMouseLeave={() => setHovered(undefined)}
+    >
+      {item.name}
+    </div>
+  );
+};
 
 const App = () => {
   const [selected, setSelected] = useState(undefined);
@@ -65,8 +56,18 @@ const App = () => {
   const [hovered, setHovered] = useState(undefined);
 
   useEffect(() => {
-    setSelected(items[0]);
-    document.getElementById("clipHistory").focus();
+    console.log("Inside useEffect");
+
+    ipcRenderer.on("clipboardContents", (event, message) => {
+      console.log("clip : ", message);
+      items = [];
+      message.forEach((element, index) => {
+        items.push({ id: index + 10, name: element });
+      });
+      console.log(items);
+      setSelected(items[0]);
+      document.getElementById("clipHistory").focus();
+    });
   }, []);
 
   useEffect(() => {
