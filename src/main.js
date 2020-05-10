@@ -10,10 +10,12 @@ const Menu = electron.Menu;
 const Tray = electron.Tray;
 const BrowserWindow = electron.BrowserWindow;
 
-const ITEM_MAX_LENGTH = 1000;
+const ITEM_MAX_LENGTH = 100;
 const STACK_SIZE = 20;
 
 function addToStack(item, stack = []) {
+  var index = stack.indexOf(item);
+  if (index !== -1) stack.splice(index, 1);
   return [item].concat(
     stack.length >= STACK_SIZE ? stack.slice(0, stack.length - 1) : stack
   );
@@ -29,7 +31,7 @@ function formatMenuTemplateForStack(clipboard, stack) {
   return stack.map((item, i) => ({
     label: `Copy: ${formatItem(item)}`,
     click: (_) => clipboard.writeText(item),
-    accelerator: `Cmd+Alt+${i + 1}`,
+    accelerator: `CmdOrCtrl+Alt+${i + 1}`,
   }));
 }
 
@@ -47,17 +49,22 @@ function checkClipboardForChange(clipboard, onChange) {
 
 function registerShortcuts(globalShortcut, clipboard, stack) {
   globalShortcut.unregisterAll();
-  for (let i = 0; i < STACK_SIZE; ++i) {
+  for (let i = 0; i < 5; ++i) {
     globalShortcut.register(`CmdOrCtrl+Alt+${i + 1}`, (_) => {
       clipboard.writeText(stack[i]);
     });
   }
 }
 
+//TOOD : Add a Quit button to tray
+
+var win = null;
+
 app.on("ready", (_) => {
   console.log("Ready");
   let stack = [];
-  const tray = new Tray(path.join("src", "trayIcon.png"));
+  var tray = new Tray(path.join("src", "trayIcon.png"));
+  tray.setToolTip("Clipboard History");
   //TOOD : Add a Quit button to tray
   //TODO : Add a limit option to tray
   tray.setContextMenu(
@@ -66,9 +73,9 @@ app.on("ready", (_) => {
 
   globalShortcut.unregisterAll();
   globalShortcut.register("CmdOrCtrl+L", () => {
-    let win = new BrowserWindow({
+    win = new BrowserWindow({
       width: 400,
-      height: 600,
+      height: 400,
       webPreferences: {
         nodeIntegration: true,
       },
@@ -87,11 +94,10 @@ app.on("ready", (_) => {
       win.loadFile("build/index.html");
     }
 
-    if (isDev) {
-      win.webContents.openDevTools();
-    }
+    // if (isDev) {
+    //   win.webContents.openDevTools();
+    // }
 
-    let contents = win.webContents;
     win.webContents.on("did-finish-load", () => {
       win.webContents.send("clipboardContents", stack);
     });
@@ -102,7 +108,7 @@ app.on("ready", (_) => {
     tray.setContextMenu(
       Menu.buildFromTemplate(formatMenuTemplateForStack(clipboard, stack))
     );
-    //registerShortcuts(globalShortcut, clipboard, stack)
+    //registerShortcuts(globalShortcut, clipboard, stack);
   });
 });
 
@@ -110,4 +116,9 @@ app.on("window-all-closed", (e) => e.preventDefault());
 
 app.on("will-quit", (_) => {
   globalShortcut.unregisterAll();
+});
+
+ipcMain.handle("setClipboard", (events, args) => {
+  clipboard.writeText(args.name);
+  win.close();
 });

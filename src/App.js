@@ -38,13 +38,20 @@ const ListItem = ({ id, item, active, setSelected, setHovered }) => {
     <div
       id={`clip_${id}`}
       className={`item ${active ? "active" : ""}`}
-      onClick={() => setSelected(item)}
+      onClick={() => {
+        setSelected(item);
+        invokeCopyClipboard(item);
+      }}
       onMouseEnter={() => setHovered(item)}
       onMouseLeave={() => setHovered(undefined)}
     >
       {item.name}
     </div>
   );
+};
+
+const invokeCopyClipboard = (clip) => {
+  ipcRenderer.invoke("setClipboard", clip);
 };
 
 const App = () => {
@@ -85,6 +92,8 @@ const App = () => {
   useEffect(() => {
     if (items.length && enterPress) {
       setSelected(items[cursor]);
+      //ipcRenderer.invoke("setClipboard", items[cursor]);
+      invokeCopyClipboard(items[cursor]);
     }
   }, [cursor, enterPress]);
   useEffect(() => {
