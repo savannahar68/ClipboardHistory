@@ -1,9 +1,12 @@
 {
   "name": "clipboardreact",
   "version": "0.1.0",
+  "description": "Recreating Window's 10 clipboard history in electron for all OS(Win, Mac, Linux)",
   "author": "Savan Naha <savannahar68@gmail.com>",
+  "productName": "Clipboard History",
   "license": "MIT",
   "main": "src/main.js",
+  "homepage": "./",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "react": "^16.13.1",
@@ -54,5 +57,58 @@
   "bugs": {
     "url": "https://github.com/savannahar68/ClipboardHistory/issues"
   },
-  "homepage": "https://github.com/savannahar68/ClipboardHistory"
+  "build": {
+    "appId": "com.savan.clipboardhistory",
+    "productName": "Clipboard History",
+    "copyright": "savannahar68",
+    "linux": {
+      "category": "Utility",
+      "icon": "icons/png/64x64.png",
+      "target": [
+        {
+          "target": "deb",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "mac": {
+      "icon": "icons/mac/icon.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "asar": false,
+      "icon": "icons/win/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "directories": {
+      "output": "dist"
+    }
+  }
 }

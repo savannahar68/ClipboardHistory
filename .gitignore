@@ -8,3 +8,4 @@ Release.key
 .DS_Store
 .vscode
 .todo
+build/
