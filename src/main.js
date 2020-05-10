@@ -122,6 +122,9 @@ app.on("ready", (_) => {
     tray.setContextMenu(
       Menu.buildFromTemplate(formatMenuTemplateForStack(clipboard, stack))
     );
+    if (win !== null) {
+      win.webContents.send("clipboardContents", stack);
+    }
     //registerShortcuts(globalShortcut, clipboard, stack);
   });
 });
@@ -131,6 +134,8 @@ app.on("window-all-closed", (e) => e.preventDefault());
 app.on("will-quit", (_) => {
   globalShortcut.unregisterAll();
 });
+
+app.allowRendererProcessReuse = true;
 
 ipcMain.handle("setClipboard", (events, args) => {
   clipboard.writeText(args.name);

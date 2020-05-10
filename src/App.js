@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const ipcRenderer = window.require("electron").ipcRenderer;
+
 const useKeyPress = function (targetKey) {
   const [keyPressed, setKeyPressed] = useState(false);
 
@@ -19,19 +20,20 @@ const useKeyPress = function (targetKey) {
   };
 
   React.useEffect(() => {
-    window.addEventListener("keydown", downHandler);
-    window.addEventListener("keyup", upHandler);
-
-    return () => {
-      window.removeEventListener("keydown", downHandler);
-      window.removeEventListener("keyup", upHandler);
-    };
+    return eventListener(downHandler, upHandler);
   });
 
   return keyPressed;
 };
 
-var items = [];
+const eventListener = (downHandler, upHandler) => {
+  window.addEventListener("keydown", downHandler);
+  window.addEventListener("keyup", upHandler);
+  return () => {
+    window.removeEventListener("keydown", downHandler);
+    window.removeEventListener("keyup", upHandler);
+  };
+};
 
 const ListItem = ({ id, item, active, setSelected, setHovered }) => {
   return (
@@ -49,6 +51,9 @@ const ListItem = ({ id, item, active, setSelected, setHovered }) => {
     </div>
   );
 };
+
+// This array will have list of object of clips
+var items = [];
 
 const invokeCopyClipboard = (clip) => {
   ipcRenderer.invoke("setClipboard", clip);
@@ -114,7 +119,12 @@ const App = () => {
       <div
         tabIndex="0"
         id="clipHistory"
-        style={{ overflowY: "auto", height: "280px", paddingBottom: "5px", paddingTop: "5px" }}
+        style={{
+          overflowY: "auto",
+          height: "280px",
+          paddingBottom: "5px",
+          paddingTop: "5px",
+        }}
       >
         {items.map((item, i) => (
           <ListItem
