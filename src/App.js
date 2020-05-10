@@ -103,7 +103,7 @@ const App = () => {
   }, [hovered]);
 
   return (
-    <div style={{ overflow: "hidden" }}>
+    <div style={{ overflow: "none", position: "fixed" }}>
       <p>
         <small>
           Use up down keys and hit enter to copy text to clipboard, or use the
@@ -114,7 +114,7 @@ const App = () => {
       <div
         tabIndex="0"
         id="clipHistory"
-        style={{ overflowY: "auto", height: "300px" }}
+        style={{ overflowY: "auto", height: "280px", paddingBottom: "5px", paddingTop: "5px" }}
       >
         {items.map((item, i) => (
           <ListItem

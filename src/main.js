@@ -70,7 +70,7 @@ var win = null;
 app.on("ready", (_) => {
   console.log("Ready");
   let stack = [];
-  var tray = new Tray(path.join("src", "trayIcon.png"));
+  var tray = new Tray(path.join("src", "tray.png"));
   tray.setToolTip("Clipboard History");
   //TODO : Add a limit option to tray
   tray.setContextMenu(
