@@ -101,11 +101,11 @@ app.on("ready", (_) => {
     });
 
     win.on("window-all-closed", (e) => e.preventDefault());
-    if (isDev) {
-      win.loadURL("http://localhost:3000");
-    } else {
-      win.loadFile(`file://${path.join(__dirname, "../build/index.html")}`);
-    }
+    win.loadURL(
+      isDev
+        ? "http://localhost:3000"
+        : `file://${path.join(__dirname, "../build/index.html")}`
+    );
 
     // if (isDev) {
     //   win.webContents.openDevTools();
@@ -140,3 +140,4 @@ ipcMain.handle("setClipboard", (events, args) => {
   clipboard.writeText(args.name);
   win.close();
 });
+

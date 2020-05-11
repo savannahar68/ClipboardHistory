@@ -5,64 +5,25 @@
   "author": "Savan Naha <savannahar68@gmail.com>",
   "productName": "Clipboard History",
   "license": "MIT",
-  "main": "src/main.js",
-  "homepage": "./",
+  "private": true,
   "dependencies": {
+    "cross-env": "6.0.2",
     "bootstrap": "^4.4.1",
+    "electron-is-dev": "1.1.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "electron-is-dev": "^1.2.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "electron": "electron .",
-    "electron-dev": "concurrently \"BROWSER=none npm run start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build-electron": "mkdir build/electron && cp src/main.js build/electron/. && cp src/tray.png build/electron/.",
-    "build-electron-win": "mkdir build/electron && robocopy src/main.js build/electron",
-    "package": "electron-builder build --x64 --linux -c.extraMetadata.main=build/electron/main.js --publish never",
-    "pack": "electron-builder --dir",
-    "dist": "npx electron-builder --x64 --linux --c.extraMetadata.main=build/electron/main.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
-    "electron-builder": "^22.6.0",
-    "wait-on": "^5.0.0",
-    "electron": "^8.2.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/savannahar68/ClipboardHistory.git"
-  },
-  "keywords": [
-    "electron-app",
-    "javascript",
-    "clipboard",
-    "clipboard-manager",
-    "electron"
-  ],
-  "bugs": {
-    "url": "https://github.com/savannahar68/ClipboardHistory/issues"
+    "electron": "8.2.5",
+    "electron-builder": "^21.2.0",
+    "react-scripts": "3.4.1",
+    "wait-on": "^5.0.0"
   },
   "build": {
+    "publish": {
+      "provider": "github"
+    },
     "appId": "com.savan.clipboardhistory",
     "productName": "Clipboard History",
     "copyright": "savannahar68",
@@ -101,14 +62,44 @@
           ]
         }
       ]
-    },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "buildResources": "build",
-      "output": "dist"
     }
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "scripts": {
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test --env=jsdom",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "release": "yarn react-build && electron-builder --publish=always",
+    "build": "yarn react-build && yarn electron-build",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savannahar68/ClipboardHistory.git"
+  },
+  "keywords": [
+    "electron-app",
+    "javascript",
+    "clipboard",
+    "clipboard-manager",
+    "electron"
+  ],
+  "bugs": {
+    "url": "https://github.com/savannahar68/ClipboardHistory/issues"
   }
 }
