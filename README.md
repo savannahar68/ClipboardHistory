@@ -1,6 +1,7 @@
 # Clipboard History
 Recreating Window's 10 clipboard history in Electron, so that it can be used on any operating systems.
 
+<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/popOs.gif" width="100%">
 
 ## Usage
 
