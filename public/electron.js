@@ -9,16 +9,21 @@ const globalShortcut = electron.globalShortcut;
 const Menu = electron.Menu;
 const Tray = electron.Tray;
 const BrowserWindow = electron.BrowserWindow;
+const { exec } = require("child_process");
 
 const ITEM_MAX_LENGTH = 100;
 const STACK_SIZE = 20;
 
 function addToStack(item, stack = []) {
-  var index = stack.indexOf(item);
-  if (index !== -1) stack.splice(index, 1);
-  return [item].concat(
-    stack.length >= STACK_SIZE ? stack.slice(0, stack.length - 1) : stack
-  );
+  if (item) {
+    var index = stack.indexOf(item);
+    if (index !== -1) stack.splice(index, 1);
+    return [item].concat(
+      stack.length >= STACK_SIZE ? stack.slice(0, stack.length - 1) : stack
+    );
+  } else {
+    return stack;
+  }
 }
 
 function formatItem(item) {
@@ -28,11 +33,17 @@ function formatItem(item) {
 }
 
 function formatMenuTemplateForStack(clipboard, stack) {
-  let contextMenu = stack.map((item, i) => ({
-    label: `Copy: ${formatItem(item)}`,
-    click: (_) => clipboard.writeText(item),
-    accelerator: `CmdOrCtrl+Alt+${i + 1}`,
-  }));
+  let contextMenu = null;
+  if (stack.length !== 0) {
+    contextMenu = stack.map((item, i) => ({
+      label:
+        i === 0 ? ` * Copy: ${formatItem(item)}` : `Copy: ${formatItem(item)}`,
+      click: (_) => clipboard.writeText(item),
+      accelerator: `CmdOrCtrl+Alt+${i + 1}`,
+    }));
+  } else {
+    contextMenu = [{ label: "<Empty>", enabled: false }];
+  }
   contextMenu.push({
     label: "Quit",
     click: () => {
@@ -63,28 +74,46 @@ function registerShortcuts(globalShortcut, clipboard, stack) {
   }
 }
 
-//TOOD : Add a Quit button to tray
+function createTray() {
+  tray = new Tray(path.join(__dirname, "tray.png"));
+  tray.setToolTip("Clipboard History");
+  //TODO : Add a limit option to tray
 
+  tray.setContextMenu(
+    Menu.buildFromTemplate(formatMenuTemplateForStack(clipboard, stack))
+  );
+}
+
+function startMonitoringTray() {
+  if (process.platform !== "linux") return;
+
+  const monit = exec(`
+    dbus-monitor --session "type='signal',interface='org.gnome.ScreenSaver'" |
+    while read x; do
+      case "$x" in 
+        *"boolean true"*) echo SCREEN_LOCKED;;
+        *"boolean false"*) echo SCREEN_UNLOCKED;;  
+      esac
+    done
+  `);
+
+  monit.stdout.on("data", (data) => {
+    const out = data.toString().trim();
+    if (out === "SCREEN_UNLOCKED") {
+      tray.destroy();
+      createTray();
+    }
+  });
+}
+
+//TOOD : Add a Quit button to tray
 var win = null;
+var tray = null;
+let stack = [];
 
 app.on("ready", (_) => {
   console.log("Ready");
-  let stack = [];
-  var tray = new Tray(path.join(__dirname, "tray.png"));
-  tray.setToolTip("Clipboard History");
-  //TODO : Add a limit option to tray
-  tray.setContextMenu(
-    Menu.buildFromTemplate([
-      { label: "<Empty>", enabled: false },
-      {
-        label: "Quit",
-        click: () => {
-          app.quit();
-        },
-      },
-    ])
-  );
-
+  createTray();
   globalShortcut.unregisterAll();
   globalShortcut.register("CmdOrCtrl+L", () => {
     win = new BrowserWindow({
@@ -141,3 +170,5 @@ ipcMain.handle("setClipboard", (events, args) => {
   win.close();
 });
 
+//This will handle tray disappearing bug in linux
+startMonitoringTray();
