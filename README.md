@@ -16,11 +16,14 @@ Linux | Windows | Mac
 **Preview Windows**
 
 ![Windows 10 - Tray](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/win_tray.png)
+
+
 ![Windows 10 - App Window](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/win_window.png)
 
 **Preview Linux POP OS - 20.04**
 
-![Linux - Tray](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/linux_tray.png)
+<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/linux_tray.png" width="60%" height="100%" />
+
 ![Linux - App Window](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/linux_window.png)
 
 **Preview MacOS**
