@@ -75,8 +75,8 @@
     "release": "yarn react-build && electron-builder --publish=always",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build_npm": "npm react-build && npm electron-build",
-    "start_npm": "concurrently \"cross-env BROWSER=none npm react-start\" \"wait-on http://localhost:3000 && electron .\""
+    "build_npm": "npm run react-build && npm run electron-build",
+    "start_npm": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "browserslist": {
     "production": [
