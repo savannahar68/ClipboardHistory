@@ -25,7 +25,7 @@
       "provider": "github"
     },
     "appId": "com.savan.clipboardhistory",
-    "productName": "Clipboard History",
+    "productName": "Clipboard-History",
     "copyright": "savannahar68",
     "linux": {
       "category": "Utility",
@@ -76,7 +76,8 @@
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "build_npm": "npm run react-build && npm run electron-build",
-    "start_npm": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\""
+    "start_npm": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build_release": "yarn electron-build -p always"
   },
   "browserslist": {
     "production": [

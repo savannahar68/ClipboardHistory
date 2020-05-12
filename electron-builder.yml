@@ -1,0 +1,29 @@
+appId: com.savan.clipboardhistory
+publish:
+  provider: github
+  token: [YOUR GITHUB ACCESS TOKEN]
+productName: Clipboard-History
+copyright: savannahar68
+win:
+  asar: false
+  icon: icons/win/icon.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+linux:
+  category: Utility
+  icon: icons/mac/icon.icns
+  target:
+    - target: deb
+      arch:
+        - x64
+mac:
+  icon: icons/mac/icon.icns
+  target:
+    - target: dmg
+directories:
+  output: dist
