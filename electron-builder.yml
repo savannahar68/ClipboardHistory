@@ -1,7 +1,8 @@
 appId: com.savan.clipboardhistory
 publish:
   provider: github
-  token: [YOUR GITHUB ACCESS TOKEN]
+  token: [token]
+  GH_TOKEN: [token]
 productName: Clipboard-History
 copyright: savannahar68
 win:

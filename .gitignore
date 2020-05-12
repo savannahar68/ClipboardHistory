@@ -9,3 +9,5 @@ Release.key
 .vscode
 .todo
 build/
+.env
+.githubPersonalIdToken.txt

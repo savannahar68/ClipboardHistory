@@ -22,7 +22,9 @@
   },
   "build": {
     "publish": {
-      "provider": "github"
+      "provider": "github",
+      "owner": "savannahar68",
+      "repo": "ClipboardHistory"
     },
     "appId": "com.savan.clipboardhistory",
     "productName": "Clipboard-History",
@@ -77,7 +79,7 @@
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "build_npm": "npm run react-build && npm run electron-build",
     "start_npm": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
-    "build_release": "yarn electron-build -p always"
+    "publish": "electron-builder -p always --config ./electron-builder.yml"
   },
   "browserslist": {
     "production": [
