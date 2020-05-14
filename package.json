@@ -31,7 +31,7 @@
     "copyright": "savannahar68",
     "linux": {
       "category": "Utility",
-      "icon": "icons/png/256x256.png",
+      "icon": "icons/mac/icon.icns",
       "target": [
         {
           "target": "deb",

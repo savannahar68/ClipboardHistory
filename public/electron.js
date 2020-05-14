@@ -4,6 +4,7 @@ const ipcMain = require("electron").ipcMain;
 const isDev = require("electron-is-dev");
 
 const app = electron.app;
+const dialog = electron.dialog;
 const clipboard = electron.clipboard;
 const globalShortcut = electron.globalShortcut;
 const Menu = electron.Menu;
@@ -188,6 +189,16 @@ app.on("window-all-closed", (e) => e.preventDefault());
 
 app.on("will-quit", (_) => {
   globalShortcut.unregisterAll();
+});
+
+app.requestSingleInstanceLock();
+app.on("second-instance", () => {
+  dialog.showMessageBox({
+    type: "info",
+    title: "Clipboard History",
+    message: "An instance of Clipboard History already open",
+    buttons: ["Ok"],
+  });
 });
 
 app.allowRendererProcessReuse = true;
