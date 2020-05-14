@@ -22,13 +22,13 @@ Linux | Windows | Mac
 
 **Preview Linux POP OS - 20.04**
 
-<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/linux_tray.png" width="60%" height="100%" />
+<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/linux_tray.png" width="50%" height="50%" />
 
 ![Linux - App Window](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/linux_window.png)
 
 **Preview MacOS**
 
-<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/mac_tray.png" width="50%" height="50%" />
+<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/mac_tray.png" width="50%" height="50%" />
 
 <img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/mac_window.png" width="50%" height="100%" />
 
@@ -117,7 +117,7 @@ Go to folder `dist` and execute the `Clipboard History_X.X.X.deb` and be happy.
 
 ### Download latest release
 
-If don´t want do a build, you can download the [latest release](https://github.com/savannahar68/ClipboardHistory/releases)!
+If don´t want do a build, you can download the [latest release](https://github.com/savannahar68/ClipboardHistory/releases/tag/1.0.0)!
 
 
 ## License
