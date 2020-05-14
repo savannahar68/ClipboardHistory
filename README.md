@@ -113,6 +113,12 @@ $ npm run build_npm
 
 Go to folder `dist` and execute the `Clipboard History_X.X.X.deb` and be happy.
 
+## Releases
+
+### Download latest release
+
+If don´t want do a build, you can download the [latest release](https://github.com/savannahar68/ClipboardHistory/releases)!
+
 
 ## License
 The code of web-review is released under the MIT License. There is no limitation for both acadmic and commercial usage.
