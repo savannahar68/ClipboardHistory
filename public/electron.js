@@ -12,7 +12,7 @@ const BrowserWindow = electron.BrowserWindow;
 const { exec } = require("child_process");
 
 const ITEM_MAX_LENGTH = 100;
-const STACK_SIZE = 20;
+var STACK_SIZE = 10;
 
 function addToStack(item, stack = []) {
   if (item) {
@@ -36,14 +36,21 @@ function formatMenuTemplateForStack(clipboard, stack) {
   let contextMenu = null;
   if (stack.length !== 0) {
     contextMenu = stack.map((item, i) => ({
-      label:
-        i === 0 ? ` * Copy: ${formatItem(item)}` : `Copy: ${formatItem(item)}`,
+      label: `${formatItem(item)}`,
       click: (_) => clipboard.writeText(item),
       accelerator: `CmdOrCtrl+Alt+${i + 1}`,
+      type: "radio",
+      checked: i === 0 ? true : false,
     }));
   } else {
     contextMenu = [{ label: "<Empty>", enabled: false }];
   }
+  contextMenu.push({
+    label: `Clipboard history limit (${STACK_SIZE} clips)`,
+    type: "submenu",
+    submenu: Menu.buildFromTemplate(submenuHistoryLimitTemplate()),
+    id: "submenuHistoryLimit",
+  });
   contextMenu.push({
     label: "Quit",
     click: () => {
@@ -51,6 +58,26 @@ function formatMenuTemplateForStack(clipboard, stack) {
     },
   });
   return contextMenu;
+}
+
+function submenuHistoryLimitTemplate() {
+  const limits = [10, 25, 50, 75, 100];
+
+  return limits.map((limit) => {
+    const checked = limit === STACK_SIZE;
+    return {
+      label: `${limit} clips`,
+      click: () => {
+        STACK_SIZE = limit;
+        stack = stack.length >= STACK_SIZE ? stack.slice(0, STACK_SIZE) : stack;
+        tray.setContextMenu(
+          Menu.buildFromTemplate(formatMenuTemplateForStack(clipboard, stack))
+        );
+      },
+      type: "radio",
+      checked: checked,
+    };
+  });
 }
 
 function checkClipboardForChange(clipboard, onChange) {

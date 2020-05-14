@@ -111,7 +111,14 @@ const App = () => {
           mouse
         </small>
       </p>
-      <span>Selected: {selected ? selected.name : "none"}</span>
+      <span>
+        Selected:{" "}
+        {selected
+          ? selected.name.length > 100
+            ? selected.name.substring(0, 100) + "..."
+            : selected.name
+          : "none"}
+      </span>
       <div
         tabIndex="0"
         id="clipHistory"
