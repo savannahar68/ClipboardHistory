@@ -17,7 +17,7 @@ win:
         - x64
 linux:
   category: Utility
-  icon: icons/png/512x512.png
+  icon: icons/mac/icon.icns
   target:
     - target: deb
       arch:
