@@ -1,6 +1,6 @@
 {
   "name": "clipboardhistory",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Recreating Window's 10 clipboard history in electron for all OS(Win, Mac, Linux)",
   "author": "Savan Naha <savannahar68@gmail.com>",
   "productName": "Clipboard History",
