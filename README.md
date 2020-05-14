@@ -22,13 +22,13 @@ Linux | Windows | Mac
 
 **Preview Linux POP OS - 20.04**
 
-<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/linux_tray.png" width="60%" height="100%" />
+<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/linux_tray.png" width="50%" height="50%" />
 
 ![Linux - App Window](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/linux_window.png)
 
 **Preview MacOS**
 
-<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/mac_tray.png" width="50%" height="50%" />
+<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/mac_tray.png" width="50%" height="50%" />
 
 <img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/mac_window.png" width="50%" height="100%" />
 
