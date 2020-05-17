@@ -24,7 +24,7 @@ Linux | Windows | Mac
 
 <img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/linux_tray.png" width="50%" height="50%" />
 
-![Linux - App Window](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/linux_window.png)
+![Linux - App Window](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/linux_window_new.png)
 
 **Preview MacOS**
 
