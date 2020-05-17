@@ -18,7 +18,7 @@ Linux | Windows | Mac
 ![Windows 10 - Tray](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/win_tray.png)
 
 
-![Windows 10 - App Window](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/win_window.png)
+![Windows 10 - App Window](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/win_window_new.png)
 
 **Preview Linux POP OS - 20.04**
 
@@ -30,7 +30,7 @@ Linux | Windows | Mac
 
 <img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/mac_tray.png" width="50%" height="50%" />
 
-<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/273f5c043212dd8903be76aefd50a8ea1b93f93f/images/mac_window.png" width="50%" height="100%" />
+<img src="https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/mac_window_new.png" width="50%" height="100%" />
 
 ## Windows(You can go with either Yarn build or Npm build)
 
