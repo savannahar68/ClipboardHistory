@@ -41,7 +41,7 @@ const ListItem = ({ id, item, active, setSelected, setHovered }) => {
       id={`clip_${id}`}
       className={`item ${active ? "active" : ""}`}
       onClick={() => {
-        setSelected(item);
+        //setSelected(item);
         invokeCopyClipboard(item);
       }}
       onMouseEnter={() => setHovered(item)}
@@ -60,7 +60,7 @@ const invokeCopyClipboard = (clip) => {
 };
 
 const App = () => {
-  const [selected, setSelected] = useState(undefined);
+  //const [selected, setSelected] = useState(undefined);
   const downPress = useKeyPress("ArrowDown");
   const upPress = useKeyPress("ArrowUp");
   const enterPress = useKeyPress("Enter");
@@ -73,7 +73,8 @@ const App = () => {
       message.forEach((element, index) => {
         items.push({ id: index + 10, name: element });
       });
-      setSelected(items[0]);
+      //setSelected(items[0]);
+      setHovered(items[0]);
       document.getElementById("clipHistory").focus();
     });
   }, []);
@@ -92,7 +93,7 @@ const App = () => {
   }, [upPress]);
   useEffect(() => {
     if (items.length && enterPress) {
-      setSelected(items[cursor]);
+      //setSelected(items[cursor]);
       //ipcRenderer.invoke("setClipboard", items[cursor]);
       invokeCopyClipboard(items[cursor]);
     }
@@ -106,25 +107,25 @@ const App = () => {
   return (
     <div style={{ overflow: "none", position: "fixed" }}>
       <p>
-        <small>
-          Use up down keys and hit enter to copy text to clipboard, or use the
-          mouse
-        </small>
+        Tip: {/* <small> */}
+        Use UP DOWN arrow keys and hit enter to copy text to clipboard, or use
+        the mouse.
+        {/* </small> */}
       </p>
-      <span>
+      {/* <span>
         Selected:{" "}
         {selected
           ? selected.name.length > 100
             ? selected.name.substring(0, 100) + "..."
             : selected.name
           : "none"}
-      </span>
+      </span> */}
       <div
         tabIndex="0"
         id="clipHistory"
         style={{
           overflowY: "auto",
-          height: "280px",
+          height: "330px",
           paddingBottom: "5px",
           paddingTop: "5px",
         }}
@@ -134,7 +135,7 @@ const App = () => {
             key={item.id}
             active={i === cursor}
             item={item}
-            setSelected={setSelected}
+            // setSelected={setSelected}
             setHovered={setHovered}
           />
         ))}

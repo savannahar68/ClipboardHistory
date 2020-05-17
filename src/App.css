@@ -1,15 +1,19 @@
 body {
   font-family: sans-serif;
+  background: #000;
+  color: white;
 }
 
 .item {
-  border: 1px solid lightblue;
+  border: 1px solid rgb(135, 203, 226);
+  color: white;
+  background: #575b5fda;
   margin: 5px;
   padding: 5px;
 }
 
 .item.active {
-  background: yellow;
+  border: 2px solid red;
 }
 
 .item:hover {
