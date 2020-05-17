@@ -117,7 +117,7 @@ Go to folder `dist` and execute the `Clipboard History_X.X.X.deb` and be happy.
 
 ### Download latest release
 
-If don´t want do a build, you can download the [latest release](https://github.com/savannahar68/ClipboardHistory/releases/tag/1.0.0)!
+If don´t want do a build, you can download the [latest release](https://github.com/savannahar68/ClipboardHistory/releases/tag/v1.1.0)!
 
 
 ## License
