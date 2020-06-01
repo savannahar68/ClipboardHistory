@@ -121,7 +121,7 @@ If don´t want do a build, you can download the [latest release](https://github.
 
 
 ## License
-The code of web-review is released under the MIT License. There is no limitation for both acadmic and commercial usage.
+The code of Clipboard History is released under the MIT License. There is no limitation for both acadmic and commercial usage.
 
 
 Feel free to raise issue if you find one! Contributions are always welcomed :)
