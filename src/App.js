@@ -39,6 +39,7 @@ const ListItem = ({ id, item, active, setSelected, setHovered }) => {
   return (
     <div
       id={`clip_${id}`}
+      width="100%"
       className={`item ${active ? "active" : ""}`}
       onClick={() => {
         //setSelected(item);
