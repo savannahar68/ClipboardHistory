@@ -13,6 +13,8 @@ Linux | Windows | Mac
 --- | --- | ---
 `Ctrl+L` | `Ctrl+L` | `CMD+L`
 
+Custom shortcut option coming soon!
+
 **Preview Windows**
 
 ![Windows 10 - Tray](https://raw.githubusercontent.com/savannahar68/ClipboardHistory/master/images/win_tray.png)
